@@ -14,7 +14,7 @@ public class Main {
        fantastic.AddBooks(book);
        scifi.AddBooks(book2);
        while (true){
-            System.out.println("1.Add Fantastic book\n2.Add Sci-fi book\n3.Delete book\n4Exit");
+            System.out.println("1.Add Fantastic book\n2.Add Sci-fi book\n3.Delete book\n4.Exit");
             int choice2 = sc.nextInt();
             if (choice2 == 1){
                 System.out.println("Name of book:");
