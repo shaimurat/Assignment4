@@ -1,2 +1,5 @@
-public class  BreadthFirstSearch<Vertex> extends Search<Vertex>{
+public class  BreadthFirstSearch<V> extends Search<V>{
+    public BreadthFirstSearch(V source) {
+        super(source);
+    }
 }

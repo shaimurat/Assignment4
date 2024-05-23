@@ -18,55 +18,54 @@ public class WeightedGraph<V>{
         map.put(vert, new Vertex<>(vert));
     }
 
-    public void addEdge(V source, V dest) {
+    public void addEdge(V source, V dest, double weight) {
         if (!hasVertex(source)){
             addVertex((source));
         }
-
-        if (!hasVertex(dest))
+        if (!hasVertex(dest)){
             addVertex(dest);
-
-        if (hasEdge(source, dest)
-                || source.equals(dest))
-            return; // reject parallels & self-loops
-
-        map.get(source).add(dest);
-
-        if (undirected)
-            map.get(dest).add(source);
+        }
+        if (hasEdge(source, dest) || source.equals(dest)){
+            return;
+            }
+        map.get(source).addAdjacentVertex(map.get(dest), weight);
+        if (undirected){
+            map.get(dest).addAdjacentVertex(map.get(source), weight);
+        }
     }
 
     public int getVerticesCount() {
         return map.size();
     }
 
-    public int getEdgesCount() {
-        int count = 0;
-        for (Vertex v : map.keySet()) {
-            count += map.get(v).size();
-        }
-
-        if (undirected)
-            count /= 2;
-
-        return count;
-    }
-
-
     public boolean hasVertex(V v) {
+        if (getVerticesCount() == 0){
+            return false;
+        }
         return map.containsKey(v);
     }
 
-    public boolean hasEdge(Vertex source, Vertex dest) {
-        if (!hasVertex(source)) return false;
-        return map.get(source).contains(dest);
+    public void delete(V vert){
+        map.remove(vert);
     }
 
-    public List<Vertex> adjacencyList(Vertex v) {
-        if (!hasVertex(v)) return null;
-
-        return map.get(v);
+    public boolean hasEdge(V source, V dest) {
+        if (getVerticesCount() < 2){
+            return false;
+        }
+        if (!hasVertex(source)) {return false;}
+        return map.get(source).getAdjacent_vertices().containsKey(map.get(dest));
     }
 
-    public abstract void addEdge(Vertex source, Vertex dest, double weight);
+    public Double getWeight(V source, V dest){
+        return map.get(source).getAdjacent_vertices().get(dest).doubleValue();
+    }
+
+    public Vertex<V> getVertex(V data){
+        return map.get(data);
+    }
+
+    public Iterable<V> getAdjacentVertices(V data){
+        return map.keySet();
+    }
 }
