@@ -1,11 +1,13 @@
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Vertex<V> {
     private V data;
-    private Map<Vertex<V>, Double> adjacent_vertices;
+    private final Map<Vertex<V>, Double> adjacent_vertices = new HashMap<>();
 
-    public Vertex(){}
+    public Vertex(){
+        this(null);
+    }
 
     public Vertex(V data){
         this.data = data;

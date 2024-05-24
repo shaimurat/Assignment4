@@ -39,9 +39,6 @@ public class WeightedGraph<V>{
     }
 
     public boolean hasVertex(V v) {
-        if (getVerticesCount() == 0){
-            return false;
-        }
         return map.containsKey(v);
     }
 
@@ -50,22 +47,24 @@ public class WeightedGraph<V>{
     }
 
     public boolean hasEdge(V source, V dest) {
-        if (getVerticesCount() < 2){
+        if (!hasVertex(source)) {return false;}
+        if(map.get(source).getAdjacent_vertices() == null){
             return false;
         }
-        if (!hasVertex(source)) {return false;}
         return map.get(source).getAdjacent_vertices().containsKey(map.get(dest));
     }
 
     public Double getWeight(V source, V dest){
-        return map.get(source).getAdjacent_vertices().get(dest).doubleValue();
+        if(!hasEdge(source, dest)) {
+            return Double.POSITIVE_INFINITY;
+        }
+        return map.get(source).getAdjacent_vertices().get(map.get(dest));
     }
 
     public Vertex<V> getVertex(V data){
         return map.get(data);
     }
-
-    public Iterable<V> getAdjacentVertices(V data){
-        return map.keySet();
+    public Iterable<V> getAdjacent_vertices(){
+        return  map.keySet();
     }
 }

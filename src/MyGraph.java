@@ -6,6 +6,6 @@ public class MyGraph<V> extends WeightedGraph<V> {
     }
 
     public void addEdge(V source, V dest) {
-        super.addEdge(source, dest, 1);
+        super.addEdge(source, dest, 1.0);
     }
 }

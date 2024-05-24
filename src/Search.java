@@ -11,17 +11,17 @@ public class Search<V> {
         edgeTo = new HashMap<>();
     }
 
-    public boolean hasPathTo(V v) {
+    private boolean hasPathTo(V v) {
         return marked.contains(v);
     }
 
     public Iterable<V> pathTo(V v) {
         if (!hasPathTo(v)) return null;
-        LinkedList<V> ls = new LinkedList<>();
+        LinkedList<V> list = new LinkedList<>();
         for (V i = v; i != source; i = edgeTo.get(i)) {
-            ls.push(i);
+            list.push(i);
         }
-        ls.push(source);
-        return ls;
+        list.push(source);
+        return list;
     }
 }

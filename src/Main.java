@@ -1,28 +1,28 @@
 public class Main {
 
     public static void main(String[] args) {
-        //WeightedGraph<String> weightedGraph = new WeightedGraph<>(true);
-        //fillWithWeights(weightedGraph);
+        WeightedGraph<String> weightedGraph = new WeightedGraph<>(true);
+        fillWithWeights(weightedGraph);
 
-        //System.out.println("Dijkstra:");
-        //Search<String> djk = new DijkstraSearch<>(weightedGraph, "Almaty");
-        //outputPath(djk, "Kyzylorda");
+        System.out.println("Dijkstra:");
+        Search<String> djk = new DijkstraSearch<>(weightedGraph, "Almaty");
+        outputPath(djk, "Kyzylorda");
 
 
-       // System.out.println("--------------------------------");
+       System.out.println("--------------------------------");
 
         MyGraph<String> graph = new MyGraph<>(true);
         fillWithoutWeights(graph);
-        System.out.println(graph.getVerticesCount());
+        //System.out.println(graph.getVerticesCount());
         System.out.println("DFS:");
         Search<String> dfs = new DepthFirstSearch<>(graph, "Almaty");
         outputPath(dfs, "Kyzylorda");
 
         System.out.println("--------------------------------");
 
-        //System.out.println("BFS:");
-        //Search<String> bfs = new BreadthFirstSearch<>(graph, "Almaty");
-        //outputPath(bfs, "Kyzylorda");
+        System.out.println("BFS:");
+        Search<String> bfs = new BreadthFirstSearch<>(graph, "Almaty");
+        outputPath(bfs, "Kyzylorda");
     }
 
     public static void fillWithoutWeights(MyGraph<String> graph) {
